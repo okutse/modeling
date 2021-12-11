@@ -8,7 +8,9 @@ output:
     
 ---
 
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 # Modeling Infectious Disease Dynamics
 The model implemented here is not that difficult. See how equations render?? Pretty Awesome, right? You can add equations using LaTeX in rmarkdown as always
