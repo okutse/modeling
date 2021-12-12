@@ -30,10 +30,9 @@
 #' @author Amos Okutse
 #' @export  
 
-
 seir_model<-function(S, E, I, R, beta, gamma, sigma, tfinal){
   
-  #function specifying the system of differential equations used deSolve
+  #function specifying the system of differential equations used by deSolve
   seir <- function(time, state, parameters) {
     with(as.list(c(state, parameters)), {
       dS <- - beta*S*I
@@ -63,8 +62,95 @@ seir_model<-function(S, E, I, R, beta, gamma, sigma, tfinal){
 
 ################################################################################
 
-#another function goes here!!
+#' Simulation of a compartmental SIR infectious disease transmission model
+#' 
+#' @description Simulation of the more general SEIR with these compartments:
+#'    Susceptibles (S), Infected/Infectious (I), and Recovered (R).
+#'    
+#'    The compartmental SIR model implemented using this function on the Shiny app
+#'    assumes that the time is in days. The model can, however, work for any unit of 
+#'    time passed to it.
+#'    
+#' @param S : the initial number of susceptible individuals : numeric
+#' @param I : the number of individuals infected : numeric
+#' @param R : the number recovered : numeric
+#' @param beta : the rate of infection : numeric
+#' @param gamma : the rate of recovery/transition from the infectious state : numeric
+#' @param tfinal : simulation time in days : numeric
+#' @usage sir_model(S, I, R, beta, gamma, tfinal)
+#' @return This function returns the simulation result as obtained from a call
+#'   to the deSolve ordinary differential equation (ODE) solver.
+#' @details A compartmental ID model with several states/compartments
+#'   is simulated as a set of ordinary differential
+#'   equations. The function returns the output from the odesolver as a matrix,
+#'   with one column per compartment/variable. The first column is time.
+#' @section Warning: 
+#'   No error-checking is carried out by the function. Nonsensical parameters
+#'   will result in an error.
+#' @seealso The ABOUT section of the app contains further details on this model.
+#' @references 
+#' @author Amos Okutse
+#' @author Yingjie Zhou
+#' @export
+  
+sir_model<-function(S, I, R, beta, gamma, tfinal){
+  
+  #function specifying the system of differential equations used by deSolve
+  sir <- function(time, state, parameters) {
+    with(as.list(c(state, parameters)), {
+      dS <- - beta*S*I
+      dI <- beta*S*I - gamma*I
+      dR <- gamma*I
+      return(list(c(dS, dI, dR)))
+    })
+  }
+  
+  #combine the user inputs as parameters
+  parameters<-c(beta=beta, gamma=gamma)
+  
+  #create vector of the initial state values
+  y=c(S=S, I=I, R=R)
+  
+  #create vector of simulation times where tfinal=input$tfinal
+  times=seq(0, tfinal, by=1)
+  
+  #solve the system of differentials using the deSolve package
+  results <- deSolve::ode(y=y, times=times, func=sir, parms=parameters)
+  
+  #create data frame of the results and return
+  return(as.data.frame(results))
+}
 
+################################################################################
+
+#' Simulation of a compartmental SI infectious disease transmission model
+#' 
+#' @description Simulation of the more general SI with these compartments:
+#'    Susceptibles (S) and Infected/Infectious (I).
+#'    
+#'    The compartmental SI model implemented using this function on the Shiny app
+#'    assumes that the time is in days. The model can, however, work for any unit of 
+#'    time passed to it. The model assumes that once infected, an individual does 
+#'    not recover or is never removed from that compartment.
+#'    
+#' @param S : the initial number of susceptible individuals : numeric
+#' @param I : the number of individuals infected : numeric
+#' @param beta : the rate of infection : numeric
+#' @param tfinal : simulation time in days : numeric
+#' @usage si_model(S, I, beta, tfinal)
+#' @return This function returns the simulation result as obtained from a call
+#'   to the deSolve ordinary differential equation (ODE) solver.
+#' @details A compartmental ID model with several states/compartments
+#'   is simulated as a set of ordinary differential
+#'   equations. The function returns the output from the odesolver as a matrix,
+#'   with one column per compartment/variable. The first column is time.
+#' @section Warning: 
+#'   No error-checking is carried out by the function. Nonsensical parameters
+#'   will result in an error.
+#' @seealso The ABOUT section of the app contains further details on this model.
+#' @references 
+#' @author Amos Okutse
+#' @export  
 
 
 
