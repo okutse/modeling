@@ -1,5 +1,5 @@
 # Package names
-packages <- c("markdown","here","ggplot2", "tidyverse", "shiny", "shinydashboard", "shinyBS", "magrittr", "rmarkdown", "plotly", "DT", "shinyWidgets",
+packages <- c("rsconnect", "packrat", "markdown","here","ggplot2", "tidyverse", "shiny", "shinydashboard", "shinyBS", "magrittr", "rmarkdown", "plotly", "DT", "shinyWidgets",
               "shinycssloaders", "deSolve","docstring", "fontawesome", "knitr")
 
 # Install packages not yet installed

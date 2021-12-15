@@ -5,10 +5,6 @@ options(warn = -1)
 source('load_packages.R')
 source('simulation_functions.R')
 
-#load the rmarkdown (.Rmd) file and knit it to a markdown file (.md)
-#rmdfiles <- c("README.Rmd")
-#sapply(rmdfiles, knit, quiet = T)
-
 ################################################################################
 
 #THE USER INTERFACE (UI)
@@ -152,11 +148,12 @@ ui<-dashboardPage(
                     title = "Explore Model Dynamics", 
                     side = "right",
                     tabPanel(title = "Trajectories",
-                             plotlyOutput("plot", width = "100%", height = "650px") %>% #650px"
-                               withSpinner(),
-                             switchInput("facet_model",
-                                         label = "Plot animated disease dynamics", 
-                                         value = TRUE, inline = TRUE, width = "auto"))
+                             plotlyOutput("plot", width = "100%", height = "550px") %>% #650px"
+                               withSpinner()#,
+                             #switchInput("facet_model",
+                                         #label = "Plot animated disease dynamics", 
+                                         #value = TRUE, inline = TRUE, width = "auto")
+                             ) #closes the fluidRow for the plots
                   )),
                 fluidRow(
                   tabBox(
@@ -244,6 +241,26 @@ ui<-dashboardPage(
               br(),
               br(),
               br(),
+              h1(strong("The Intervention SIR Model"), style = "font-size:30px;"),
+              br(),
+              div(h1(strong("User-Specified Parameters"), style = "font-size:20px;"), style="text-align: center;"),
+              div(img(src='SIR_intervention.png', width="500px", align="center"), style="text-align: center;"),
+              br(),
+              div(h1(strong("SIR with Intervention Equations"), style = "font-size:20px;"), 
+                  style="text-align: center;"),
+              h1("In the Analyze Intervention Effect tab, we have created an adaptation of the SIR model 
+                 that also accounts for the intervention effect of a vaccine, and 
+                 visualizes how the number of those susceptible, infected, or 
+                 recovered will change over time as a result of a number of different parameters. 
+                 The parameters for our intervention model and the ordinary differential equations 
+                 describing the rate of change for each state are outlined below:", style = "font-size:16px;"),
+              br(),
+              withMathJax(includeMarkdown("SIR_equations_intervention.md")),
+              br(),
+              br(),
+              br(),
+              br(),
+              
               
               ), #end of readme inputs
       #the home tab 
