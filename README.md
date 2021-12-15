@@ -55,29 +55,32 @@ each state are outlined below:
 
 #### User-Specified Parameters
 
-S(t) = Number of susceptible individuals at time t E(t) = Number of
-exposed individuals at time t I(t) = Number of infected individuals at
-time t R(t) = Number of recovered individuals at time t
+S(t) = Number of susceptible individuals at time t
 
-*β* = Infection rate *σ* = Rate from exposure to infection *γ* =
-Recovery parameter
+E(t) = Number of exposed individuals at time t
+
+I(t) = Number of infected individuals at time t
+
+R(t) = Number of recovered individuals at time t
+
+*β* = Infection rate
+
+*σ* = Rate from exposure to infection
+
+*γ* = Recovery parameter
 
 When you enter customizable parameters S(t), E(t), I(t), and R(t), you
 will be entering their values at time point t=0.
 
 #### Equations
 
-$$\\frac{dS(t)}{dt} = -\\beta\*S(t)\*I(t)$$
+$\\frac{dS(t)}{dt} = -\\beta\*S(t)\*I(t)$
 
-$$\\frac{dE(t)}{dt} = \\beta\*S(t)\*I(t) - \\sigma\*E(t)$$
+$\\frac{dE(t)}{dt} = \\beta\*S(t)\*I(t) - \\sigma\*E(t)$
 
-$$
-\\frac{dI(t)}{dt} = \\sigma\*E(t) - \\gamma\*I(t)
-$$
+$\\frac{dI(t)}{dt} = \\sigma\*E(t) - \\gamma\*I(t)$
 
-$$
-\\frac{dR(t)}{dt} = \\gamma\*I(t)
-$$
+$\\frac{dR(t)}{dt} = \\gamma\*I(t)$
 
 ### The SIR Model
 
@@ -95,22 +98,26 @@ change for each state are outlined below:
 
 #### User-Specified Parameters
 
-S(t) = Number of susceptible individuals at time t I(t) = Number of
-infected individuals at time t R(t) = Number of recovered individuals at
-time t
+S(t) = Number of susceptible individuals at time t
 
-*β* = Infection rate *γ* = Recovery parameter
+I(t) = Number of infected individuals at time t
+
+R(t) = Number of recovered individuals at time t
+
+*β* = Infection rate
+
+*γ* = Recovery parameter
 
 When you enter customizable parameters S(t), I(t), and R(t), you will be
 entering their values at time point t=0.
 
 #### Equations
 
-$$\\frac{dS(t)}{dt} = -\\beta\*S(t)\*I(t)$$
+$\\frac{dS(t)}{dt} = -\\beta\*S(t)\*I(t)$
 
-$$\\frac{dI(t)}{dt} = \\beta\*S(t)\*I(t) - \\gamma\*I(t)$$
+$\\frac{dI(t)}{dt} = \\beta\*S(t)\*I(t) - \\gamma\*I(t)$
 
-$$\\frac{dR(t)}{dt} = \\gamma\*I(t) $$
+$ = I(t) $
 
 ### The SI Model
 
@@ -127,15 +134,18 @@ state are outlined below:
 
 #### User-Specified Parameters
 
-S(t) = Number of susceptible individuals at time t I(t) = Number of
-infected individuals at time t *β* = Infection rate
+S(t) = Number of susceptible individuals at time t
+
+I(t) = Number of infected individuals at time t
+
+*β* = Infection rate
 
 When you enter customizable parameters S(t) and I(t), you will be
 entering their values at time point t=0.
 
 #### Equations
 
-$$\\frac{dS(t)}{dt} = -\\beta\*S(t)\*I(t)$$
+$\\frac{dS(t)}{dt} = -\\beta\*S(t)\*I(t)$
 
 $$\\frac{dI(t)}{dt} = \\beta\*S(t)\*I(t)$$
 
